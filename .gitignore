@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data (usually too large for github)
+data/raw/
+*.csv
+*.xlsx
+
+# Environment
+.env
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Models (usually too large)
+*.pkl
+*.h5
+outputs/models/
