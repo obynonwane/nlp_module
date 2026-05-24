@@ -1,11 +1,11 @@
 # stopwords.py
 import nltk
 
-# download stopwords if not already downloaded
-nltk.download("stopwords")
-
 # import stopwords from nltk corpus
 from nltk.corpus import stopwords
+
+# download stopwords if not already downloaded
+nltk.download("stopwords", quiet=True)
 
 
 def get_stopwords(language="english"):
