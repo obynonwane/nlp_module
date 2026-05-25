@@ -1,13 +1,59 @@
+from regexes import regex_search, regex_search_string_array, regex_sub_string
 from stopwords import get_stopwords, remove_stopwords
 
 
 def main():
     # Execute stop words
+    print("====================Executing Stop words=================================")
+    execute_stopword()
+    print("=====================Executing Regex Manipulation========================")
+    execute_regex_manipulation()
+
+
+def execute_stopword():
     print(get_stopwords("english"))
     sentence = "it was too far to go to the shop and he did not want her to walk"
     print(remove_stopwords(sentence))
-    #============================================================================
-    
+
+
+def execute_regex_manipulation():
+
+    # initilise search string with item that will be found
+    searchable_string_exist = r"string containing the pattern"
+
+    # initilise search string with item that will not be found
+    searchable_string_not_exist = r"the phrase to find isn't in this string"
+
+    # initilise variable with item i want to find in above string
+    search_pattern1 = "pattern"
+
+    print("Result Exist", regex_search(search_pattern1, searchable_string_exist))
+    print(
+        "Result do not exist",
+        regex_search(search_pattern1, searchable_string_not_exist),
+    )
+
+    # pattern, repl, string
+    search_pattern2 = r"sara"
+    replace_with_string = r"sarah?"
+    string_pattern = r"sara was able to help me find the items i needed quickly"
+    regex_sub_string(search_pattern2, replace_with_string, string_pattern)
+
+    # Search pattern ending with sarah or sara
+    customer_reviews = [
+        "sam was a great help to me in the store",
+        "the cashier was very rude to me, I think her name was eleanor",
+        "amazing work from sadeen!",
+        "sarah was able to help me find the items i needed quickly",
+        "lucy is such a great addition to the team",
+        "great service from sara she found me what i wanted",
+    ]
+
+    search_pattern3 = r"sarah?"
+    print(
+        "Get result with sarah or sara",
+        regex_search_string_array(search_pattern3, customer_reviews),
+    )
 
 
 if __name__ == "__main__":
