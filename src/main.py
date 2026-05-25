@@ -1,12 +1,12 @@
-from regexes import (
+from text_preprocessing.regexes import (
     regex_search,
     regex_search_string_array,
     regex_sub_string,
     remove_punctuation,
     remove_punctuation_in_reviews,
 )
-from stopwords import get_stopwords, remove_stopwords
-from tokenization import sentence_tokenisation, word_tokenisation
+from text_preprocessing.stopwords import get_stopwords, remove_stopwords
+from text_preprocessing.tokenization import sentence_tokenisation, word_tokenisation
 
 
 def main():
