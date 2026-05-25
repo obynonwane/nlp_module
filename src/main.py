@@ -18,6 +18,7 @@ def execute_stopword():
 
 def execute_regex_manipulation():
 
+    # ====================================================================================
     # initilise search string with item that will be found
     searchable_string_exist = r"string containing the pattern"
 
@@ -33,13 +34,17 @@ def execute_regex_manipulation():
         regex_search(search_pattern1, searchable_string_not_exist),
     )
 
+    # ====================================================================================
     # pattern, repl, string
+    # Search pattern and replace a string with replace_with_string
     search_pattern2 = r"sara"
-    replace_with_string = r"sarah?"
+    replace_with_string = r"sarah"
     string_pattern = r"sara was able to help me find the items i needed quickly"
     regex_sub_string(search_pattern2, replace_with_string, string_pattern)
 
+    # ====================================================================================
     # Search pattern ending with sarah or sara
+    # Pull out reviews that mention sara or sarah using ? regex pattern
     customer_reviews = [
         "sam was a great help to me in the store",
         "the cashier was very rude to me, I think her name was eleanor",
@@ -53,6 +58,30 @@ def execute_regex_manipulation():
     print(
         "Get result with sarah or sara",
         regex_search_string_array(search_pattern3, customer_reviews),
+    )
+
+    # ====================================================================================
+    # search for pattern that start with letter a
+    search_pattern4 = r"^a"
+    print(
+        "Get result for pattern staring with later a",
+        regex_search_string_array(search_pattern4, customer_reviews),
+    )
+
+    # ====================================================================================
+    # search for pattern that end with letter y
+    search_pattern5 = r"y$"
+    print(
+        "Get result for pattern staring with later y",
+        regex_search_string_array(search_pattern5, customer_reviews),
+    )
+
+    # ====================================================================================
+    # search for pattern with pipe | that acts like an or
+    search_pattern6 = r"(need|want)ed"
+    print(
+        "Get result for pipe symbol",
+        regex_search_string_array(search_pattern6, customer_reviews),
     )
 
 
