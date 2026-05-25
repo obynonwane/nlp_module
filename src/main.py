@@ -6,7 +6,7 @@ from regexes import (
     remove_punctuation_in_reviews,
 )
 from stopwords import get_stopwords, remove_stopwords
-from tokeenization import sentence_tokenisation, word_tokenisation
+from tokenization import sentence_tokenisation, word_tokenisation
 
 
 def main():
