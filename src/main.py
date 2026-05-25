@@ -5,6 +5,7 @@ from text_preprocessing.regexes import (
     remove_punctuation,
     remove_punctuation_in_reviews,
 )
+from text_preprocessing.stemming import stem_word
 from text_preprocessing.stopwords import get_stopwords, remove_stopwords
 from text_preprocessing.tokenization import sentence_tokenisation, word_tokenisation
 
@@ -17,6 +18,9 @@ def main():
     execute_regex_manipulation()
     print("=====================Executing Tokenization========================")
     execute_tokenize()
+
+    print("=====================Executing Stemming========================")
+    execute_stem()
 
 
 def execute_stopword():
@@ -115,6 +119,14 @@ def execute_tokenize():
     print("Result of Word Tokenisation:", sentence_tokenisation(sentences))
     print("Result of Sentence Tokenisation", word_tokenisation(sentences))
     print("Result of Second Word Tokenisation", word_tokenisation(sentence_2))
+
+
+def execute_stem():
+    connect_tokens = ["connecting", "connected", "connectivity", "connect", "connects"]
+    stem_word(connect_tokens)
+
+    learn_tokens = ["learned", "learning", "learn", "learns", "learner", "learners"]
+    stem_word(learn_tokens)
 
 
 if __name__ == "__main__":
