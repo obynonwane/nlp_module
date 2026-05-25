@@ -6,6 +6,7 @@ from regexes import (
     remove_punctuation_in_reviews,
 )
 from stopwords import get_stopwords, remove_stopwords
+from tokeenization import sentence_tokenisation, word_tokenisation
 
 
 def main():
@@ -14,6 +15,8 @@ def main():
     execute_stopword()
     print("=====================Executing Regex Manipulation========================")
     execute_regex_manipulation()
+    print("=====================Executing Tokenization========================")
+    execute_tokenize()
 
 
 def execute_stopword():
@@ -94,7 +97,9 @@ def execute_regex_manipulation():
     # removing punctuation from string using regex pattern [^\w\s]
     # examples of punctuation include !, ., ,, ?, etc.
     string_with_punctuation = r"this is a string with punctuation! it has commas, full stops. and exclamation marks!"
-    print("Removing punctuation from string:", remove_punctuation(string_with_punctuation))
+    print(
+        "Removing punctuation from string:", remove_punctuation(string_with_punctuation)
+    )
 
     # ====================================================================================
     # removing punctuation from reviews
@@ -102,6 +107,14 @@ def execute_regex_manipulation():
         "Removing punctuation from reviews",
         remove_punctuation_in_reviews(customer_reviews),
     )
+
+
+def execute_tokenize():
+    sentences = "Her cat's name is Luna. Her dog's name is max"
+    sentence_2 = "Her cat's name is Luna and her dog's name is max"
+    print("Result of Word Tokenisation:", sentence_tokenisation(sentences))
+    print("Result of Sentence Tokenisation", word_tokenisation(sentences))
+    print("Result of Second Word Tokenisation", word_tokenisation(sentence_2))
 
 
 if __name__ == "__main__":
