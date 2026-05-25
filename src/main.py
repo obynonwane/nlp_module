@@ -1,3 +1,4 @@
+from text_preprocessing.lemmatization import lemmatize_word
 from text_preprocessing.regexes import (
     regex_search,
     regex_search_string_array,
@@ -21,6 +22,9 @@ def main():
 
     print("=====================Executing Stemming========================")
     execute_stem()
+
+    print("=====================Executing Lemmatizer========================")
+    execute_lemmatize()
 
 
 def execute_stopword():
@@ -127,6 +131,20 @@ def execute_stem():
 
     learn_tokens = ["learned", "learning", "learn", "learns", "learner", "learners"]
     stem_word(learn_tokens)
+
+    likes_tokens = ["likes", "better", "worse"]
+    stem_word(likes_tokens)
+
+
+def execute_lemmatize():
+    connect_tokens = ["connecting", "connected", "connectivity", "connect", "connects"]
+    lemmatize_word(connect_tokens)
+
+    learn_tokens = ["learned", "learning", "learn", "learns", "learner", "learners"]
+    lemmatize_word(learn_tokens)
+
+    likes_tokens = ["likes", "better", "worse"]
+    lemmatize_word(likes_tokens)
 
 
 if __name__ == "__main__":
