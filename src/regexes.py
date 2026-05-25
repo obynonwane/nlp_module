@@ -28,3 +28,24 @@ def regex_search_string_array(pattern, string_array):
             new_string_array.append(string)
 
     return new_string_array
+
+
+def remove_punctuation(string):
+    # This function takes a string and removes all punctuation from it.
+    # It uses the regex pattern [^\w\s] to match any character that is not a word character or whitespace,
+    # and replaces it with an empty string.
+    # ^ means "not", \w matches any word character (alphanumeric or underscore), and \s matches any whitespace character.
+    # means find any character that is not a word character or whitespace and replace it with an empty string.
+
+    result = re.sub(r"[^\w\s]", "", string)
+    return result
+
+
+def remove_punctuation_in_reviews(string_array):
+    new_string_array = []
+
+    for string in string_array:
+        new_string = remove_punctuation(string)
+        new_string_array.append(new_string)
+
+    return new_string_array

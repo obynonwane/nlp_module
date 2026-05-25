@@ -1,4 +1,10 @@
-from regexes import regex_search, regex_search_string_array, regex_sub_string
+from regexes import (
+    regex_search,
+    regex_search_string_array,
+    regex_sub_string,
+    remove_punctuation,
+    remove_punctuation_in_reviews,
+)
 from stopwords import get_stopwords, remove_stopwords
 
 
@@ -43,7 +49,7 @@ def execute_regex_manipulation():
     regex_sub_string(search_pattern2, replace_with_string, string_pattern)
 
     # ====================================================================================
-    # Search pattern ending with sarah or sara
+    # Search pattern ending with sarah or sara using ?
     # Pull out reviews that mention sara or sarah using ? regex pattern
     customer_reviews = [
         "sam was a great help to me in the store",
@@ -82,6 +88,19 @@ def execute_regex_manipulation():
     print(
         "Get result for pipe symbol",
         regex_search_string_array(search_pattern6, customer_reviews),
+    )
+
+    # ====================================================================================
+    # removing punctuation from string using regex pattern [^\w\s]
+    # examples of punctuation include !, ., ,, ?, etc.
+    string_with_punctuation = r"this is a string with punctuation! it has commas, full stops. and exclamation marks!"
+    print("Removing punctuation from string:", remove_punctuation(string_with_punctuation))
+
+    # ====================================================================================
+    # removing punctuation from reviews
+    print(
+        "Removing punctuation from reviews",
+        remove_punctuation_in_reviews(customer_reviews),
     )
 
 
