@@ -5,6 +5,7 @@ from text_preprocessing.ngrams import (
     trigram_impl,
     unigram_impl,
 )
+from text_preprocessing.nlp_exercise1 import excercise1
 from text_preprocessing.regexes import (
     regex_search,
     regex_search_string_array,
@@ -39,6 +40,8 @@ def main():
     bigram_impl()
     print("=====================Executing Trigrams============================")
     trigram_impl()
+    print("=====================Executing Execercise one============================")
+    exercise_one_impl()
 
 
 def execute_stopword():
@@ -158,6 +161,10 @@ def execute_lemmatize():
 
     likes_tokens = ["likes", "better", "worse"]
     lemmatize_word(likes_tokens)
+
+
+def exercise_one_impl():
+    excercise1()
 
 
 def execute_ngram():
