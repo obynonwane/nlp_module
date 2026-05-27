@@ -1,5 +1,10 @@
 from text_preprocessing.lemmatization import lemmatize_word
-from text_preprocessing.ngrams import ngram_impl
+from text_preprocessing.ngrams import (
+    bigram_impl,
+    ngram_impl,
+    trigram_impl,
+    unigram_impl,
+)
 from text_preprocessing.regexes import (
     regex_search,
     regex_search_string_array,
@@ -26,6 +31,14 @@ def main():
 
     print("=====================Executing Lemmatizer========================")
     execute_lemmatize()
+    print("=====================Executing Ngrams============================")
+    execute_ngram()
+    print("=====================Executing Unigrams============================")
+    unigram_impl()
+    print("=====================Executing Bigrams============================")
+    bigram_impl()
+    print("=====================Executing Trigrams============================")
+    trigram_impl()
 
 
 def execute_stopword():
@@ -35,7 +48,6 @@ def execute_stopword():
 
 
 def execute_regex_manipulation():
-
     # ====================================================================================
     # initilise search string with item that will be found
     searchable_string_exist = r"string containing the pattern"

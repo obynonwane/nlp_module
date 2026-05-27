@@ -1,3 +1,8 @@
+import matplotlib
+
+matplotlib.use("Agg")
+import os
+
 import matplotlib.pyplot as plt
 import nltk
 import pandas as pd
@@ -111,6 +116,59 @@ tokens = [
     "to",
     "come",
 ]
+
+
+# panda is for data manipulation and analysis,
+# it provides data structures and functions to work with structured data,
+# such as tables and time series. It is commonly used for data cleaning,
+# transformation, and analysis tasks in various fields,
+# including machine learning and natural language processing.
+
+
+# matplotlib is a plotting library for the Python programming language
+# and its numerical mathematics extension NumPy.
+
+
+def unigram_impl():
+    unigrams = (pd.Series(nltk.ngrams(tokens, 1))).value_counts()
+    print(unigrams)
+    unigrams[0:10].sort_values().plot.barh(
+        color="lightsalmon", width=0.9, figsize=(12, 8)
+    )
+    plt.title("10 Most Frequently Occuring Unigrams")
+    os.makedirs("outputs/figures", exist_ok=True)
+    out_path = "outputs/figures/unigrams.png"
+    plt.savefig(out_path, bbox_inches="tight")
+    plt.close()
+    print(f"Saved plot to {out_path}")
+
+
+def bigram_impl():
+    bigrams = (pd.Series(nltk.ngrams(tokens, 2))).value_counts()
+    print(bigrams)
+    bigrams[0:10].sort_values().plot.barh(
+        color="lightsalmon", width=0.9, figsize=(12, 8)
+    )
+    plt.title("10 Most Frequently Occuring bigrams")
+    os.makedirs("outputs/figures", exist_ok=True)
+    out_path = "outputs/figures/bigrams.png"
+    plt.savefig(out_path, bbox_inches="tight")
+    plt.close()
+    print(f"Saved plot to {out_path}")
+
+
+def trigram_impl():
+    trigrams = (pd.Series(nltk.ngrams(tokens, 3))).value_counts()
+    print(trigrams)
+    trigrams[0:10].sort_values().plot.barh(
+        color="lightsalmon", width=0.9, figsize=(12, 8)
+    )
+    plt.title("10 Most Frequently Occuring trigrams")
+    os.makedirs("outputs/figures", exist_ok=True)
+    out_path = "outputs/figures/trigrams.png"
+    plt.savefig(out_path, bbox_inches="tight")
+    plt.close()
+    print(f"Saved plot to {out_path}")
 
 
 def ngram_impl():
