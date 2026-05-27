@@ -1,4 +1,5 @@
 from text_preprocessing.lemmatization import lemmatize_word
+from text_preprocessing.ngrams import ngram_impl
 from text_preprocessing.regexes import (
     regex_search,
     regex_search_string_array,
@@ -145,6 +146,10 @@ def execute_lemmatize():
 
     likes_tokens = ["likes", "better", "worse"]
     lemmatize_word(likes_tokens)
+
+
+def execute_ngram():
+    ngram_impl()
 
 
 if __name__ == "__main__":

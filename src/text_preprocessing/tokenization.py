@@ -5,7 +5,7 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 # used for sentence tokenization and word tokenization
 # for sentence boundary detection and word boundary detection
 # hence detecting where sentences and words start and end and splitting them accordingly
-nltk.download("punkt_tab")
+nltk.download("punkt")
 
 
 def sentence_tokenisation(sentence):

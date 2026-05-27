@@ -39,6 +39,29 @@ File: `src/text_preprocessing/stopwords.py`
   - Rejoins the remaining words into a cleaned string.
   - Example: `"it was too far"` -> `"too far"`
 
+### 3. Stemming
+
+File: `src/text_preprocessing/stemming.py`
+
+- `PorterStemmer()`
+  - An NLTK stemmer that reduces words to their root form.
+
+- `stem_word(strings)`
+  - Prints each input word with its stemmed form.
+  - Example: `"running"` -> `run`
+
+### 4. Lemmatization
+
+File: `src/text_preprocessing/lemmatization.py`
+
+- `nltk.download("wordnet")`
+  - Downloads the WordNet lexical database used by the lemmatizer.
+
+- `lemmatize_word(strings)`
+  - Uses `WordNetLemmatizer()`.
+  - Prints each input word with its lemmatized form.
+  - Example: `"running"` -> `running` (lemmatization is dictionary-based and preserves real words)
+
 ## Other Text Processing in the Project
 
 ### Regex-based text manipulation
@@ -72,8 +95,15 @@ In `src/main.py`, the following functions are demonstrated:
 - `execute_tokenize()`
   - Prints sentence tokenization and word tokenization results.
 
+- `execute_stem()`
+  - Prints stemmed forms for example tokens.
+
+- `execute_lemmatize()`
+  - Prints lemmatized forms for example tokens.
+
 ## Notes
 
 - `punkt` is a tokenizer model bundle used by NLTK for sentence and word tokenization.
 - `stopwords` is a built-in NLTK corpus that contains common stopwords for many languages.
+- `wordnet` is the lexical database used by NLTK lemmatization.
 - If you add more preprocessing steps, add them here and include the relevant file references.
