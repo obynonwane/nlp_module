@@ -1,3 +1,17 @@
+"""
+Data cleaning steps in this file:
+
+1. Load the CSV file from the project root, data/raw, or data/processed.
+2. Print dataset info to inspect the loaded data.
+3. Convert review text to lowercase.
+4. Remove English stop words (but keep 'not' for sentiment preservation).
+5. Replace the '*' character with the word 'star' in reviews.
+6. Tokenize the cleaned review text into individual word tokens.
+7. Apply stemming with PorterStemmer.
+8. Apply lemmatization with WordNetLemmatizer.
+9. Flatten the lemmatized tokens and compute unigrams and bigrams.
+"""
+
 import re
 from pathlib import Path
 
@@ -12,6 +26,9 @@ lemmatizer = WordNetLemmatizer()
 
 
 def excercise1():
+    # --------------------
+    # 1. Load CSV data
+    # --------------------
     # Define the project root directory
     project_root = Path(__file__).resolve().parents[2]
     # Define candidate paths to the CSV file
@@ -39,11 +56,17 @@ def excercise1():
     # print summary of data
     print(data.info())
 
+    # --------------------
+    # 2. Lowercase text
+    # --------------------
     # convert review to lowercase
     data["review_lowercase"] = data["Review"].str.lower()
     # print first 5 rows of data to check the new column
     print(data.head())
 
+    # --------------------
+    # 3. Stop word removal
+    # --------------------
     # en_stopwords is a list of English stop words from the NLTK library.
     # Stop words are common words that are often removed from text data during
     # preprocessing because they do not carry significant meaning and can be considered noise in natural language processing tasks. Examples of stop words include "the", "is", "in", "and", etc. By removing stop words, we can focus on the more meaningful words in the text, which can improve the performance of various NLP models and analyses.
@@ -60,37 +83,45 @@ def excercise1():
     # this will print the first review with stop words removed, allowing us to see the effect of the stop word removal process on the text data.
     print(data["review_no_stopwords"][0])
 
-    # remove punctuation from review_no_stopwords column and create new column review_no_stopwords_no_punct
-    # The lambda function uses the re.sub() method to replace any character that is not a word character (alphanumeric or underscore) or whitespace with an empty string.
-    # This effectively removes all punctuation from the reviews. The cleaned reviews are stored in a new column called review_no_stopwords_no_punct.
-    # row by row, the lambda function takes each review from the review_no_stopwords column, applies the regex substitution to remove punctuation,
-    # and saves the cleaned review in the new column review_no_stopwords_no_punct.
+    # --------------------
+    # 4. Punctuation handling
+    # --------------------
+    # replace '*' with the word 'star' in the cleaned reviews
     data["review_no_stopwords_no_punct"] = data.apply(
         lambda x: re.sub(r"[*]", "star", x["review_no_stopwords"]), axis=1
     )
     print(data.head())
 
+    # --------------------
+    # 5. Tokenization
+    # --------------------
     # tokenize the review_no_stopwords_no_punct column and create new column tokenized
-    # The lambda function applies the word_tokenize() function from the NLTK library to each review in the review_no_stopwords_no_punct column. The word_tokenize() function splits the text into individual words (tokens), which are stored as lists in the new column called tokenized. This process is essential for many NLP tasks, as it allows us to work with individual words rather
+    # The lambda function applies the word_tokenize() function from the NLTK library to each review in the review_no_stopwords_no_punct column. The word_tokenize() function splits the text into individual words (tokens), which are stored as lists in the new column called tokenized. This process is essential for many NLP tasks, as it allows us to work with individual words rather than raw strings.
     data["tokenized"] = data.apply(
         lambda x: word_tokenize(x["review_no_stopwords_no_punct"]), axis=1
     )
     print(data["tokenized"][0])
 
-    # ==============STEM============
+    # --------------------
+    # 6. Stemming
+    # --------------------
     data["stemmed"] = data["tokenized"].apply(
         lambda tokens: [ps.stem(token) for token in tokens]
     )
     print(data.head())
 
-    # ===============LEMMATIZE
+    # --------------------
+    # 7. Lemmatization
+    # --------------------
     data["lemmatized"] = data["tokenized"].apply(
         lambda tokens: [lemmatizer.lemmatize(token) for token in tokens]
     )
     print(data.head())
 
 
-    # ======= NGRAM IMPLEMENTATION
+    # --------------------
+    # 8. N-gram extraction
+    # --------------------
     token_clean = sum(data['lemmatized'], [])
     unigrams = (pd.Series(nltk.ngrams(token_clean, 1)).value_counts())
     print(unigrams)
