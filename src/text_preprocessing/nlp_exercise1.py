@@ -62,3 +62,8 @@ def excercise1():
     # and saves the cleaned review in the new column review_no_stopwords_no_punct.
     data['review_no_stopwords_no_punct'] = data.apply(lambda x: re.sub(r"[*]", "star", x['review_no_stopwords']), axis=1)
     print(data.head())
+    
+    # tokenize the review_no_stopwords_no_punct column and create new column tokenized
+    # The lambda function applies the word_tokenize() function from the NLTK library to each review in the review_no_stopwords_no_punct column. The word_tokenize() function splits the text into individual words (tokens), which are stored as lists in the new column called tokenized. This process is essential for many NLP tasks, as it allows us to work with individual words rather
+    data['tokenized'] = data.apply(lambda x: word_tokenize(x['review_no_stopwords_no_punct']), axis=1 )
+    print(data['tokenized'][0])
