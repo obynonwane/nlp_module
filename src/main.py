@@ -15,6 +15,7 @@ from text_preprocessing.regexes import (
 )
 from text_preprocessing.stemming import stem_word
 from text_preprocessing.stopwords import get_stopwords, remove_stopwords
+from text_preprocessing.tagging_speech import test_spacy
 from text_preprocessing.tokenization import sentence_tokenisation, word_tokenisation
 
 
@@ -42,6 +43,8 @@ def main():
     trigram_impl()
     print("=====================Executing Execercise one============================")
     exercise_one_impl()
+    print("=====================Executing Text Tagging============================")
+    execute_text_tagging()
 
 
 def execute_stopword():
@@ -171,5 +174,8 @@ def execute_ngram():
     ngram_impl()
 
 
+def execute_text_tagging():
+    test_spacy()
+    
 if __name__ == "__main__":
     main()
