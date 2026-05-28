@@ -88,3 +88,12 @@ def excercise1():
         lambda tokens: [lemmatizer.lemmatize(token) for token in tokens]
     )
     print(data.head())
+
+
+    # ======= NGRAM IMPLEMENTATION
+    token_clean = sum(data['lemmatized'], [])
+    unigrams = (pd.Series(nltk.ngrams(token_clean, 1)).value_counts())
+    print(unigrams)
+    
+    bigrams = (pd.Series(nltk.ngrams(token_clean, 2)).value_counts())
+    print(bigrams)
