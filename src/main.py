@@ -17,6 +17,7 @@ from text_preprocessing.stemming import stem_word
 from text_preprocessing.stopwords import get_stopwords, remove_stopwords
 from text_preprocessing.tagging_speech import test_spacy
 from text_preprocessing.tokenization import sentence_tokenisation, word_tokenisation
+from text_preprocessing.ner_tagging import ner_tagging
 
 
 def main():
@@ -45,6 +46,8 @@ def main():
     exercise_one_impl()
     print("=====================Executing Text Tagging============================")
     execute_text_tagging()
+    print("=====================Executing NER Tagging============================")
+    execute_ner_tagging()
 
 
 def execute_stopword():
@@ -176,6 +179,9 @@ def execute_ngram():
 
 def execute_text_tagging():
     test_spacy()
+
+def execute_ner_tagging():
+    ner_tagging()
     
 if __name__ == "__main__":
     main()

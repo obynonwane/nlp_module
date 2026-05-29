@@ -1,6 +1,6 @@
 import spacy
 import pandas as pd
- # Load a model for englist text procesing like speech tagging
+ # Load a model [en_core_web_sm] for english text processing like speech tagging
 nlp = spacy.load('en_core_web_sm')
 
 def test_spacy():
@@ -29,5 +29,9 @@ def test_spacy():
     # counts of pos_tags
     pos_df_poscounts = pos_df_counts.groupby(['pos_tag'])['token'].count().sort_values(ascending=False)
     print(pos_df_poscounts.head(15))
-     
+    
+    # see most common nouns
+    nouns = pos_df_counts[pos_df_counts.pos_tag == "NOUN"][0:10]
+    print(nouns)
+
     
