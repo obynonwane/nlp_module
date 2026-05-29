@@ -21,3 +21,13 @@ def test_spacy():
         pos_df = pd.concat([pos_df, pd.DataFrame.from_records([{'token': token.text, 'pos_tag': token.pos_}])], ignore_index=True)
     
     print(pos_df.head(15))
+    
+    # token frequency count
+    pos_df_counts = pos_df.groupby(['token','pos_tag']).size().reset_index(name='counts').sort_values(by='counts', ascending=False)
+    print(pos_df_counts.head(15))   
+    
+    # counts of pos_tags
+    pos_df_poscounts = pos_df_counts.groupby(['pos_tag'])['token'].count().sort_values(ascending=False)
+    print(pos_df_poscounts.head(15))
+     
+    
